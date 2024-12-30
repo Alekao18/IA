@@ -1,6 +1,7 @@
+
 import os #biblioteca do sistema operacional
 from langchain_groq import ChatGroq 
-from langchain.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.document_loaders import YoutubeLoader
 from langchain_community.document_loaders import PyPDFLoader
