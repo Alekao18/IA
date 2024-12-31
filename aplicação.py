@@ -10,7 +10,8 @@ from langchain_groq import ChatGroq #biblioteca da Groq
 chat = ChatGroq(model = 'llama-3.3-70b-versatile') #inicializando o chatbot com o modelo llama3(fornecido pela Groq)
 #llama3 é um modelo de linguagem grande e gratuito da META
 
-resposta = chat.invoke('O que é a vida?')
+pergunta = input('Usuario: ')
+resposta = chat.invoke(pergunta)
 print(resposta.content)#mostra a resposta do chatbot invocado
 #.content, mostra apenas o conteúdo do que a gente pediu(reposta)
 #ll3(llama3) um modelo de IA programada com diversos parâmetros , como a capacidade de aprender, raciocinar e etc. Pronta para acessarmos e utilizarmos!

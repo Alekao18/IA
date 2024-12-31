@@ -9,14 +9,15 @@ api_key = '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'
 os.environ ['GROQ_API_KEY'] = api_key # variável de ambiente
 chat = ChatGroq(model = 'llama-3.3-70b-versatile') 
 
-def respostas_bot(mensagens, documento):
+def respostas_bot(mensagens,documento):
     mensagem_system = '''Você é um assistente amigávelque se chama Leco.
     Você tem acesso as seguintes {informacoes}'''
     mensagens_modelo = [('system', mensagem_system)]
     mensagens_modelo += mensagens
     template = ChatPromptTemplate.from_messages(mensagens_modelo)
     chain = template | chat
-    return chain.invoke({'informacoes': documento}).content
+    respostas = chain.invoke({'informacoes': documento})
+    return respostas.content
 
 def carrega_sites():
     url = input("Coloque aqui a url do site: ")
@@ -58,8 +59,6 @@ Digite 4 se quiser ver o assunto de algum site
 
 while True:
     escolha_selecao = input(texto_selecao)
-    if escolha_selecao == '1':
-        break
     if escolha_selecao == '2':
         documento = carrega_pdf()
         break
@@ -77,10 +76,8 @@ while True:
     pergunta  = input("Usuário:")
     if pergunta.lower() == 'x':
         break
-    mensagens.append({'user', pergunta})
     resposta = respostas_bot(mensagens, documento)
-    mensagens.append({'assistant', resposta})
+    mensagens.append({pergunta, resposta})
     print(f'Bot: {resposta}')
 
 print(f'Obrigado {nome} por ter usado o ChatBotLeco tenha um bom dia!')
-print(f'Nosso histório de mensagens foi: {mensagens}')
