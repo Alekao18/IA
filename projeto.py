@@ -1,23 +1,23 @@
 import os #biblioteca do sistema operacional
 from langchain_groq import ChatGroq 
 from langchain.prompts import ChatPromptTemplate
-from langchain_community.document_loaders import WebBaseLoader
-from langchain_community.document_loaders import YoutubeLoader
-from langchain_community.document_loaders import PyPDFLoader
 
 api_key = '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'
 os.environ ['GROQ_API_KEY'] = api_key # variável de ambiente
 chat = ChatGroq(model = 'llama-3.3-70b-versatile') 
 
-def respostas_bot(mensagens,documento):
+def respostas_bot(mensagens, documento):
     mensagem_system = '''Você é um assistente amigávelque se chama Leco.
     Você tem acesso as seguintes {informacoes}'''
     mensagens_modelo = [('system', mensagem_system)]
     mensagens_modelo += mensagens
     template = ChatPromptTemplate.from_messages(mensagens_modelo)
     chain = template | chat
-    respostas = chain.invoke({'informacoes': documento})
-    return respostas.content
+    return chain.invoke({'informacoes': documento}).content
+
+from langchain_community.document_loaders import WebBaseLoader
+from langchain_community.document_loaders import YoutubeLoader
+from langchain_community.document_loaders import PyPDFLoader
 
 def carrega_sites():
     url = input("Coloque aqui a url do site: ")
