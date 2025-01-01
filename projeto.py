@@ -51,21 +51,20 @@ print("Olá! Seja bem vindo ao chatbotLeco\n Digite x se quiser sair do Bot!\n")
 nome = input("Qual o seu nome? ")
 
 texto_selecao = '''
-Digite 1 se quiser apenas conversar sobre algum assunto
-Digite 2 se quiser ver um pdf
-Digite 3 se quiser ver o assunto sobre video do yt
-Digite 4 se quiser ver o assunto de algum site
+Digite 1 se quiser ver um pdf
+Digite 2 se quiser ver o assunto sobre video do yt
+Digite 3 se quiser ver o assunto de algum site
 '''
 
 while True:
     escolha_selecao = input(texto_selecao)
-    if escolha_selecao == '2':
+    if escolha_selecao == '1':
         documento = carrega_pdf()
         break
-    if escolha_selecao == '3':
+    if escolha_selecao == '2':
         documento = carrega_youtube()
         break
-    elif escolha_selecao == '4':
+    elif escolha_selecao == '3':
         documento = carrega_sites()
         break
     print("Digite o valor entre 1 e 4 para cointinuar")
@@ -81,3 +80,4 @@ while True:
     print(f'Bot: {resposta}')
 
 print(f'Obrigado {nome} por ter usado o ChatBotLeco tenha um bom dia!')
+print(f'Esse foi o nosso histórico de mensagens {mensagens}')
